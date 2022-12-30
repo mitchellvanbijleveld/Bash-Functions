@@ -15,12 +15,12 @@ ScriptDeveloperWebsite = $4
 ScriptVersion = $5
 ScriptCopyright = $6
 
-echo "$ScriptName"
-echo "$ScriptDescription"
+echo "$1"
+echo "$2"
 echo
-echo "Script Developer  : $ScriptDeveloper"
-echo "Developer Website : $ScriptDeveloperWebsite"
+echo "Script Developer  : $3"
+echo "Developer Website : $4"
 echo
-echo "Version $ScriptVersion - $ScriptCopyright $ScriptDeveloper"
+echo "Version $5 - $6 $3"
 echo
 ###########################################################################
