@@ -8,12 +8,12 @@
 #ScriptVersion="2022 12 30 23 02 - beta"
 #ScriptCopyright="Â© 2022"
 
-ScriptName = $1
-ScriptDescription = $2
-ScriptDeveloper = $3
-ScriptDeveloperWebsite = $4
-ScriptVersion = $5
-ScriptCopyright = $6
+$ScriptName = $1
+$ScriptDescription = $2
+$ScriptDeveloper = $3
+$ScriptDeveloperWebsite = $4
+$ScriptVersion = $5
+$ScriptCopyright = $6
 
 echo "$1"
 echo "$2"
