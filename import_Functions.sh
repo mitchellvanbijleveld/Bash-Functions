@@ -21,7 +21,7 @@ import_Functions () {
   echo "The following function(s) will be downloaded, checked on their sha256sum and imported to the script: $StringFunctions."
 
   UpdateProgressBar () {
-    for step in $(seq 1 $FunctionCheckSteps); do
+    for step in $(seq 1 $(($FunctionCheckSteps-4))); do
       echo -n "="
     # sleep "0.25"
     done
@@ -42,15 +42,17 @@ import_Functions () {
 ###########################################################################
   for FunctionX in $@; do
   
-UpdateProgressBar
+    UpdateProgressBar
     
 # Download Files
     curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent
+    UpdateProgressBar
     curl --output "$TempDir/sha256sum/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/sha256sum/$FunctionX.sh" --silent
     UpdateProgressBar
 
 # Get checksums
     expected_checksum=$(cat "$TempDir/sha256sum/$FunctionX.sh")
+    UpdateProgressBar
     actual_checksum=$(sha256sum "$TempDir/$FunctionX.sh" | awk '{print $1}')
     UpdateProgressBar
     
@@ -59,11 +61,12 @@ UpdateProgressBar
       source "$TempDir/$FunctionX.sh"
       UpdateProgressBar
     else
+      echo
       echo "Error: script checksum does not match expected value"
       exit 1
     fi
     
   done
-  echo
+  echo " 100%"
   echo
 }
