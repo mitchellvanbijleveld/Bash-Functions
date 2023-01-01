@@ -27,7 +27,7 @@ import_Functions () {
   mkdir -p $TempDir
   mkdir -p "$TempDir/sha256sum"
 
-  FunctionCount=$#
+  FunctionCount=3
   FunctionsChecked=0
   FunctionProgressStepSize=$((100/$FunctionCount))
   
@@ -40,14 +40,14 @@ echo $FunctionsChecked
 echo $FunctionProgressStepSize
 
 
-sleep 100
+sleep 5
 
 ###########################################################################
 # Step 2 - Download all functions, called by the script.                  #
 ###########################################################################
   for FunctionX in $@; do
   
-    for step in $FunctionCount; do
+    for step in $FunctionProgressStepSize; do
       echo -n "."
     done
     
