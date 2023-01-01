@@ -30,14 +30,25 @@ import_Functions () {
   FunctionCount=$#
   FunctionsChecked=0
   FunctionProgressStepSize=100/$FunctionCount
+  
+  
+  
+  echo
+  
+echo FunctionCount
+echo FunctionsChecked
+echo FunctionProgressStepSize
+
+
+sleep 100
 
 ###########################################################################
 # Step 2 - Download all functions, called by the script.                  #
 ###########################################################################
-    for FunctionX in $@; do
+  for FunctionX in $@; do
   
-      for step in $FunctionCount; do
-        echo -n "."
+    for step in $FunctionCount; do
+      echo -n "."
     done
     
     curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent
@@ -54,3 +65,4 @@ import_Functions () {
     fi
   done
 }
+echo
