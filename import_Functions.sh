@@ -42,7 +42,7 @@ for FunctionX in $@; do
     exit 1
   fi
 
-  source "$TempDir/$FunctionX.sh"
+#  source "$TempDir/$FunctionX.sh"
 
 done
 }
