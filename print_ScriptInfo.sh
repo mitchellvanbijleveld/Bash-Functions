@@ -14,7 +14,7 @@
 #ScriptDeveloperWebsite = $4
 #ScriptVersion = $5
 #ScriptCopyright = $6
-Show_Version_Info () {
+print_ScriptInfo () {
   echo "$1"
   echo "$2"
   echo
