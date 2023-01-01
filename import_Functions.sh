@@ -39,13 +39,10 @@ import_Functions () {
     expected_checksum=$(cat "$TempDir/sha256sum/$FunctionX.sh")
     actual_checksum=$(sha256sum "$TempDir/$FunctionX.sh" | awk '{print $1}')
     if [ "$expected_checksum" == "$actual_checksum" ]; then
-      return
+      source "$TempDir/$FunctionX.sh"
     else
       echo "Error: script checksum does not match expected value"
       exit 1
     fi
-
-#  source "$TempDir/$FunctionX.sh"
-
   done
 }
