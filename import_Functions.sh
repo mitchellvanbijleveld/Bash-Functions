@@ -55,5 +55,5 @@ import_Functions () {
       exit 1
     fi
   done
-  echo
+  echo "waar blijft deze lege rij?"
 }
