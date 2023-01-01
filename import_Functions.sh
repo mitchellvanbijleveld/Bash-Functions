@@ -17,8 +17,8 @@
 
 import_Functions () {
   echo "Mitchell van Bijleveld's Function Importer has been started..."
-  StringFunctions=$(echo $@ | sed 's/ / ,/g')
-  echo -n "The following functions will be imported: $StringFunctions."
+  StringFunctions=$(echo $@ | sed 's/ /, /g')
+  echo "The following functions will be imported: $StringFunctions."
 
 
 
