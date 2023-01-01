@@ -49,6 +49,7 @@ sleep 5
   
     for step in $(seq 1 $FunctionProgressStepSize); do
       echo -n "."
+      sleep "0.25"
     done
     
     curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent
@@ -64,5 +65,5 @@ sleep 5
       exit 1
     fi
   done
+  echo
 }
-echo
