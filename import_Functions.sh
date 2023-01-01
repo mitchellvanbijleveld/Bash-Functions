@@ -20,7 +20,12 @@ import_Functions () {
   StringFunctions=$(echo $@ | sed 's/ /, /g')
   echo "The following function(s) will be downloaded, checked on their sha256sum and imported to the script: $StringFunctions."
 
-
+  UpdateProgressBar () {
+    for step in $(seq 1 $FunctionCheckSteps); do
+      echo -n "="
+    # sleep "0.25"
+    done
+  }
 
 ###########################################################################
 # Step 1 - Create a temporary directory to store the checksum files.      #
@@ -30,41 +35,29 @@ import_Functions () {
   mkdir -p "$TempDir/sha256sum"
 
   FunctionProgressStepSize=$(($(tput cols)/$#))
-  FunctionCheckSteps=$(($FunctionProgressStepSize/3))
+  FunctionCheckSteps=$(($FunctionProgressStepSize/5))
 
 ###########################################################################
 # Step 2 - Download all functions, called by the script.                  #
 ###########################################################################
   for FunctionX in $@; do
   
-    for step in $(seq 1 $FunctionCheckSteps); do
-      echo -n "="
-    # sleep "0.25"
-    done
+UpdateProgressBar
     
 # Download Files
     curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent
     curl --output "$TempDir/sha256sum/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/sha256sum/$FunctionX.sh" --silent
-    for step in $(seq 1 $FunctionCheckSteps); do
-      echo -n "="
-    # sleep "0.25"
-    done
+    UpdateProgressBar
 
 # Get checksums
     expected_checksum=$(cat "$TempDir/sha256sum/$FunctionX.sh")
     actual_checksum=$(sha256sum "$TempDir/$FunctionX.sh" | awk '{print $1}')
-        for step in $(seq 1 $FunctionCheckSteps); do
-      echo -n "="
-    # sleep "0.25"
-    done
+    UpdateProgressBar
     
 # Compare checksum
     if [ "$expected_checksum" == "$actual_checksum" ]; then
       source "$TempDir/$FunctionX.sh"
-      for step in $(seq 1 $FunctionCheckSteps); do
-        echo -n "="
-    # sleep "0.25"
-      done
+      UpdateProgressBar
     else
       echo "Error: script checksum does not match expected value"
       exit 1
