@@ -29,7 +29,7 @@ import_Functions () {
 
   FunctionCount=3
   FunctionsChecked=0
-  FunctionProgressStepSize=$((100/$FunctionCount))
+  FunctionProgressStepSize=$(($(tput cols)/$FunctionCount))
   
   
   
