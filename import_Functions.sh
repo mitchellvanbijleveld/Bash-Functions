@@ -21,7 +21,7 @@ import_Functions () {
   echo "The following function(s) will be downloaded, checked on their sha256sum and imported to the script: $StringFunctions."
 
   UpdateProgressBar () {
-    for step in $(seq 1 $FunctionCheckSteps); do
+    for step in $(seq 1 $ProgressBarStepSize); do
       echo -n "="
     # sleep "0.25"
     done
@@ -34,9 +34,9 @@ import_Functions () {
   mkdir -p $TempDir
   mkdir -p "$TempDir/sha256sum"
 
-  FunctionProgressStepSize=$(($(tput cols)/$#))
-  FunctionProgressStepSize=$(($FunctionProgressStepSize-4))
-  FunctionCheckSteps=$(($FunctionProgressStepSize/5))
+  TerminalWidth=$(tput cols)
+  ProgressBarStepSize=$(($TerminalWidth-4))
+  ProgressBarStepSize=$(($ProgressBarStepSize/5))
 
 ###########################################################################
 # Step 2 - Download all functions, called by the script.                  #
