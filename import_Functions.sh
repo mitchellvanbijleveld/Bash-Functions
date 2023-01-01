@@ -47,7 +47,7 @@ sleep 5
 ###########################################################################
   for FunctionX in $@; do
   
-    for step in $FunctionProgressStepSize; do
+    for step in $(seq 1 $FunctionProgressStepSize); do
       echo -n "."
     done
     
