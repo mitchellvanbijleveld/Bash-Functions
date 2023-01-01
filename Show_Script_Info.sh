@@ -14,13 +14,14 @@
 #ScriptDeveloperWebsite = $4
 #ScriptVersion = $5
 #ScriptCopyright = $6
-
-echo "$1"
-echo "$2"
-echo
-echo "Script Developer  : $3"
-echo "Developer Website : $4"
-echo
-echo "Version $5 - $6 $3"
-echo
+Show_Version_Info () {
+  echo "$1"
+  echo "$2"
+  echo
+  echo "Script Developer  : $3"
+  echo "Developer Website : $4"
+  echo
+  echo "Version $5 - $6 $3"
+  echo
+}
 ###########################################################################
