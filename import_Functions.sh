@@ -27,12 +27,19 @@ import_Functions () {
   mkdir -p $TempDir
   mkdir -p "$TempDir/sha256sum"
 
-
+FunctionCount=$#
+FunctionsChecked=0
+FunctionProgressStepSize= 100 / FunctionCount
 
 ###########################################################################
 # Step 2 - Download all functions, called by the script.                  #
 ###########################################################################
   for FunctionX in $@; do
+  
+    for step in FunctionCount; do
+      echo -n "."
+    done
+    
     curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent
     curl --output "$TempDir/sha256sum/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/sha256sum/$FunctionX.sh" --silent
   
@@ -40,6 +47,7 @@ import_Functions () {
     actual_checksum=$(sha256sum "$TempDir/$FunctionX.sh" | awk '{print $1}')
     if [ "$expected_checksum" == "$actual_checksum" ]; then
       source "$TempDir/$FunctionX.sh"
+      FunctionsChecked += 1
     else
       echo "Error: script checksum does not match expected value"
       exit 1
