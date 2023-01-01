@@ -38,7 +38,7 @@ import_Functions () {
   for FunctionX in $@; do
   
     for step in $(seq 1 $FunctionProgressStepSize); do
-      echo -n "."
+      echo -n "="
     # sleep "0.25"
     done
     
