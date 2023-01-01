@@ -1,2 +1,2 @@
-echo_Verbose.sh=
-print_ScriptInfo.sh=
+echo_Verbose=test
+print_ScriptInfo=test2
