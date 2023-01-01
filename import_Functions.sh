@@ -16,7 +16,8 @@
 ###########################################################################
 
 import_Functions () {
-
+  echo "Mitchell van Bijleveld's Function Importer has been started..."
+  echo "The following functions will be imported: $@."
 
 
 
@@ -29,8 +30,6 @@ import_Functions () {
 
   FunctionsChecked=0
   FunctionProgressStepSize=$(($(tput cols)/$#))
-
-  sleep 5
 
 ###########################################################################
 # Step 2 - Download all functions, called by the script.                  #
