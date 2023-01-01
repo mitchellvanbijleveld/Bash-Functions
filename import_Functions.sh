@@ -35,9 +35,9 @@ import_Functions () {
   
   echo
   
-echo FunctionCount
-echo FunctionsChecked
-echo FunctionProgressStepSize
+echo $FunctionCount
+echo $FunctionsChecked
+echo $FunctionProgressStepSize
 
 
 sleep 100
