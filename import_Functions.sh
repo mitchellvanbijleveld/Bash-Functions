@@ -17,7 +17,11 @@
 
 import_Functions () {
   echo "Mitchell van Bijleveld's Function Importer has been started..."
-  echo "The following functions will be imported: $@."
+  echo -n "The following functions will be imported:."
+  for FunctionX in $@; do
+  echo -n "$FunctionX, "
+  done
+  echo "."
 
 
 
@@ -38,7 +42,7 @@ import_Functions () {
   
     for step in $(seq 1 $FunctionProgressStepSize); do
       echo -n "."
-      sleep "0.25"
+    # sleep "0.25"
     done
     
     curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent
