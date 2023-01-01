@@ -15,7 +15,7 @@
 #ScriptVersion = $5
 #ScriptCopyright = $6
 print_ScriptInfo () {
-  echo "$1"
+  echo "$ScriptName"
   echo "$2"
   echo
   echo "Script Developer  : $3"
