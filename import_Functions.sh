@@ -29,31 +29,47 @@ import_Functions () {
   mkdir -p $TempDir
   mkdir -p "$TempDir/sha256sum"
 
-  FunctionsChecked=0
   FunctionProgressStepSize=$(($(tput cols)/$#))
+  FunctionCheckSteps=$(($FunctionProgressStepSize/3))
 
 ###########################################################################
 # Step 2 - Download all functions, called by the script.                  #
 ###########################################################################
   for FunctionX in $@; do
   
-    for step in $(seq 1 $FunctionProgressStepSize); do
+    for step in $(seq 1 $FunctionCheckSteps); do
       echo -n "="
     # sleep "0.25"
     done
     
+# Download Files
     curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent
     curl --output "$TempDir/sha256sum/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/sha256sum/$FunctionX.sh" --silent
-  
+    for step in $(seq 1 $FunctionCheckSteps); do
+      echo -n "="
+    # sleep "0.25"
+    done
+
+# Get checksums
     expected_checksum=$(cat "$TempDir/sha256sum/$FunctionX.sh")
     actual_checksum=$(sha256sum "$TempDir/$FunctionX.sh" | awk '{print $1}')
+        for step in $(seq 1 $FunctionCheckSteps); do
+      echo -n "="
+    # sleep "0.25"
+    done
+    
+# Compare checksum
     if [ "$expected_checksum" == "$actual_checksum" ]; then
       source "$TempDir/$FunctionX.sh"
-      FunctionsChecked+=1
+      for step in $(seq 1 $FunctionCheckSteps); do
+        echo -n "="
+    # sleep "0.25"
+      done
     else
       echo "Error: script checksum does not match expected value"
       exit 1
     fi
+    
   done
   echo
   echo
