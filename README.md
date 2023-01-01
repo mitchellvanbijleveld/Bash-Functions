@@ -2,6 +2,6 @@
 
 ## Usage
 ```
-source ./test.sh
-import_Functions echo_Verbose
+source <(curl https://github.mitchellvanbijleveld.dev/Bash-Functions/import_Functions.sh --silent)
+import_Functions [Function_1] [Function_2]
 ```
