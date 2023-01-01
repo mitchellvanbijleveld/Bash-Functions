@@ -35,9 +35,13 @@ import_Functions () {
   mkdir -p "$TempDir/sha256sum"
 
   TerminalWidth=$(tput cols)
+  echo $TerminalWidth
   ProgressBarStepSize=$(($TerminalWidth-4))
+  echo $ProgressBarStepSize
   ProgressBarStepSize=$(($ProgressBarStepSize/$#))
-  ProgressBarStepSize=$(($ProgressBarStepSize/5))
+  echo $ProgressBarStepSize
+  ProgressBarStepSize=$(($ProgressBarStepSize/6))
+  echo $ProgressBarStepSize
 
 ###########################################################################
 # Step 2 - Download all functions, called by the script.                  #
