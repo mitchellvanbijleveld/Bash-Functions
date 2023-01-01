@@ -36,6 +36,7 @@ import_Functions () {
 
   TerminalWidth=$(tput cols)
   ProgressBarStepSize=$(($TerminalWidth-4))
+  ProgressBarStepSize=$(($ProgressBarStepSize/$#))
   ProgressBarStepSize=$(($ProgressBarStepSize/5))
 
 ###########################################################################
