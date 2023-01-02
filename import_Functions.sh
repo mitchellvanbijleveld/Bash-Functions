@@ -19,19 +19,9 @@ import_Functions () {
 
 if echo $@ | grep -q "\-\-quiet"
 then
-    # Disable the echo command
-    echo "pass true"
-    set -o noglob
-
-    # Do not echo the argument
-    set +o history
+  set +o history
 else
-    # Enable the echo command
-        echo "pass false"
-    set +o noglob
-
-    # Echo the argument
-    set -o history
+  
 fi
 
 
@@ -123,22 +113,5 @@ fi
           ;;
        esac
   fi
-
-if echo $@ | grep -q "\-\-quiet"
-then
-    # Enable the echo command
-    set +o noglob
-
-    # Echo the argument
-    set -o history
-
-else
-    # Disable the echo command
-    set -o noglob
-
-    # Do not echo the argument
-    set +o history
-fi
-
   echo
 }
