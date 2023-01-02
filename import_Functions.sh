@@ -83,9 +83,9 @@ import_Functions () {
       echo "You can, however, continue importing any other functions (if asked by the script) and run the script."
       echo "This can, however, be a serious security concern since I can't verify the integrity of the function that is being imported."
       echo
-      read -p "Do you want to continue? If so, type 'Yes' or 'yes'. " yn
+      read -p "Do you want to continue? If so, type 'Yes'. " yn
         case $yn in
-        [Yy]es)
+        Yes)
           echo "Well, I hope you know what you are doing."
           ;;
         *)
