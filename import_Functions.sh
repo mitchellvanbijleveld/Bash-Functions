@@ -22,10 +22,6 @@ then
   function echo () {
     printf ""
   }
-else
-  function echo () {
-    printf "$@\n"
-  }
 fi
 
   echo "Mitchell van Bijleveld's Function Importer has been started..."
@@ -116,6 +112,6 @@ fi
           ;;
        esac
   fi
-  unset echo
   echo
+  unset echo
 }
