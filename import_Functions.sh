@@ -17,7 +17,7 @@
 
 import_Functions () {
 
-if echo "$@" | grep -q "--quiet"
+if echo $@ | grep -q "--quiet"
 then
     # Disable the echo command
     set -o noglob
@@ -119,7 +119,7 @@ fi
        esac
   fi
 
-if echo "$@" | grep -q "--quiet"
+if echo $@ | grep -q "--quiet"
 then
     # Enable the echo command
     set +o noglob
