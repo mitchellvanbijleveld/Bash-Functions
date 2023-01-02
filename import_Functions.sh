@@ -20,12 +20,14 @@ import_Functions () {
 if echo $@ | grep -q "\-\-quiet"
 then
     # Disable the echo command
+    echo "pass true"
     set -o noglob
 
     # Do not echo the argument
     set +o history
 else
     # Enable the echo command
+        echo "pass false"
     set +o noglob
 
     # Echo the argument
@@ -64,7 +66,9 @@ fi
 # Step 2 - Download all functions, called by the script.                  #
 ###########################################################################
   for FunctionX in $@; do
-  
+  if [ $FunctionX == "--quiet" ]; then
+  continue
+  fi
     UpdateProgressBar
     
 # Download Files
