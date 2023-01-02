@@ -16,6 +16,23 @@
 ###########################################################################
 
 import_Functions () {
+
+if echo "$@" | grep -q "--quiet"
+then
+    # Disable the echo command
+    set -o noglob
+
+    # Do not echo the argument
+    set +o history
+else
+    # Enable the echo command
+    set +o noglob
+
+    # Echo the argument
+    set -o history
+fi
+
+
   echo "Mitchell van Bijleveld's Function Importer has been started..."
   StringFunctions=$(echo $@ | sed 's/ /, /g')
   echo "The following function(s) will be downloaded, checked on their sha256sum and imported to the script: $StringFunctions."
@@ -101,6 +118,22 @@ import_Functions () {
           ;;
        esac
   fi
+
+if echo "$@" | grep -q "--quiet"
+then
+    # Enable the echo command
+    set +o noglob
+
+    # Echo the argument
+    set -o history
+
+else
+    # Disable the echo command
+    set -o noglob
+
+    # Do not echo the argument
+    set +o history
+fi
 
   echo
 }
