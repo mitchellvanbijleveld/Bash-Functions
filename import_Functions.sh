@@ -50,10 +50,12 @@ import_Functions () {
     UpdateProgressBar
     
 # Download Files
-    curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent
+    curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent &
     UpdateProgressBar
-    curl --output "$TempDir/sha256sum/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/sha256sum/$FunctionX.sh" --silent
+    curl --output "$TempDir/sha256sum/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/sha256sum/$FunctionX.sh" --silent &
     UpdateProgressBar
+
+# wait
 
 # Get checksums
     expected_checksum=$(cat "$TempDir/sha256sum/$FunctionX.sh")
