@@ -1,9 +1,9 @@
 #!/bin/bash
 
 ###########################################################################
-# Custom 'import' function that writes in a verbose logging style.          #
+# Custom 'import' function that writes in a verbose logging style.        #
 # Mitchell van Bijleveld - (https://mitchellvanbijleveld.dev/             #
-# © 2023 Mitchell van Bijleveld. 01 / 01 / 2023                           #
+# © 2023 Mitchell van Bijleveld. 02 / 01 / 2023                           #
 ###########################################################################
 
 ###########################################################################
@@ -67,7 +67,19 @@ import_Functions () {
     else
       echo
       echo "There was an error importing function '$FunctionX', most likely due to a sha256sum mismatch."
-      exit 1
+      echo "You can, however, continue importing any other functions (if asked by the script) and run the script."
+      echo "This can, however, be a serious security concern since I can't verify the integrity of the function that is being imported."
+      read -p "Do you want to continue? [Y]es/[N]o: " yn
+        case $yn in
+        [Yy])
+          echo "Well, I hope you know what you are doing."
+          ;;
+        *)
+          echo -e "\x1B[1;33mWill not connect to Screen session after exit.\x1B[0m"
+          echo
+          exit 1
+          ;;
+       esac
     fi
     
   done
