@@ -20,8 +20,6 @@ import_Functions () {
 if echo $@ | grep -q "\-\-quiet"
 then
   set +o history
-else
-  
 fi
 
 
@@ -112,6 +110,11 @@ fi
           exit 1
           ;;
        esac
+  fi
+  
+  if echo $@ | grep -q "\-\-quiet"
+  then
+    set +o history
   fi
   echo
 }
