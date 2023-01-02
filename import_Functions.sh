@@ -28,7 +28,6 @@ else
   }
 fi
 
-
   echo "Mitchell van Bijleveld's Function Importer has been started..."
   StringFunctions=$(echo $@ | sed 's/--quiet//g')
   StringFunctions=$(echo $StringFunctions | sed 's/ /, /g')
@@ -117,6 +116,6 @@ fi
           ;;
        esac
   fi
- 
+  unset echo
   echo
 }
