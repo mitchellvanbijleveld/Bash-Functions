@@ -90,10 +90,9 @@ fi
     echo -n "="
   done
   echo "] 100%"
-
+  echo
   if [ $ErrorDuringImport ]; then
       unset echo
-      echo
       echo "There was an error importing one or more functions, most likely due to a sha256sum mismatch."
       echo "You can, however, continue importing any other functions (if asked by the script) and run the script."
       echo "This can, however, be a serious security concern since I can't verify the integrity of the function that is being imported."
@@ -110,6 +109,5 @@ fi
           ;;
        esac
   fi
-  echo
   unset echo
 }
