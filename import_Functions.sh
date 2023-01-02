@@ -19,11 +19,12 @@ import_Functions () {
 
 if echo $@ | grep -q "\-\-quiet"
 then
-  # nothing
-  printf ""
+  function echo () {
+    printf ""
+  }
 else
   function echo () {
-  printf "$@\n"
+    printf "$@\n"
   }
 fi
 
