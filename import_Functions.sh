@@ -34,8 +34,8 @@ fi
 
 
   echo "Mitchell van Bijleveld's Function Importer has been started..."
-  StringFunctions=$(echo $@ | sed 's/quiet/QQQQQQQ/g')
-  StringFunctions=$(echo $@ | sed 's/ /, /g')
+  StringFunctions=$(echo $@ | sed 's/--quiet//g')
+  StringFunctions=$(echo $StringFunctions | sed 's/ /, /g')
   echo "The following function(s) will be downloaded, checked on their sha256sum and imported to the script: $StringFunctions."
   echo -n "["
 
