@@ -19,7 +19,7 @@ import_Functions () {
   echo "Mitchell van Bijleveld's Function Importer has been started..."
   StringFunctions=$(echo $@ | sed 's/ /, /g')
   echo "The following function(s) will be downloaded, checked on their sha256sum and imported to the script: $StringFunctions."
-  echo "["
+  echo -n "["
 
   UpdateProgressBar () {
     for step in $(seq 1 $ProgressBarStepSize); do
@@ -36,13 +36,9 @@ import_Functions () {
   mkdir -p "$TempDir/sha256sum"
 
   TerminalWidth=$(tput cols)
-  echo $TerminalWidth
   ProgressBarStepSize=$(($TerminalWidth-6))
-  echo $ProgressBarStepSize
   ProgressBarStepSize=$(($ProgressBarStepSize/$#))
-  echo $ProgressBarStepSize
   ProgressBarStepSize=$(($ProgressBarStepSize/6))
-  echo $ProgressBarStepSize
 
 ###########################################################################
 # Step 2 - Download all functions, called by the script.                  #
