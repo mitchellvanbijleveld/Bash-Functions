@@ -24,6 +24,7 @@ import_Functions () {
   UpdateProgressBar () {
     for step in $(seq 1 $ProgressBarStepSize); do
       echo -n "="
+      Percentage=$(($Percentage + 1))
     # sleep "0.25"
     done
   }
@@ -69,6 +70,12 @@ import_Functions () {
       exit 1
     fi
     
+  done
+  
+  MissingPercentage=$((TerminalWidth - 7 - $Percentage))
+  
+  for Percent in $(seq 1 $MissingPercentage); do
+    echo -n "="
   done
   echo "] 100%"
   echo
