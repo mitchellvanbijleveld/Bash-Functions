@@ -66,7 +66,7 @@ import_Functions () {
       UpdateProgressBar
     else
       echo
-      echo "Error: script checksum does not match expected value"
+      echo "There was an error importing function '$FunctionX', most likely due to a sha256sum mismatch."
       exit 1
     fi
     
