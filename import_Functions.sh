@@ -20,6 +20,7 @@ import_Functions () {
 if echo $@ | grep -q "\-\-quiet"
 then
   # nothing
+  printf ""
 else
   function echo () {
   printf "$@\n"
