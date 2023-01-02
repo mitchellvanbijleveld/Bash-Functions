@@ -65,8 +65,20 @@ import_Functions () {
       source "$TempDir/$FunctionX.sh"
       UpdateProgressBar
     else
+      ErrorDuringImport=true
+    fi
+  done
+  
+  MissingPercentage=$((TerminalWidth - 7 - $Percentage))
+
+  for Percent in $(seq 1 $MissingPercentage); do
+    echo -n "="
+  done
+  echo "] 100%"
+
+  if [ $ErrorDuringImport == true ]; then
       echo
-      echo "There was an error importing function '$FunctionX', most likely due to a sha256sum mismatch."
+      echo "There was an error importing one or more functions, most likely due to a sha256sum mismatch."
       echo "You can, however, continue importing any other functions (if asked by the script) and run the script."
       echo "This can, however, be a serious security concern since I can't verify the integrity of the function that is being imported."
       read -p "Do you want to continue? [Y]es/[N]o: " yn
@@ -80,15 +92,7 @@ import_Functions () {
           exit 1
           ;;
        esac
-    fi
-    
-  done
-  
-  MissingPercentage=$((TerminalWidth - 7 - $Percentage))
-  
-  for Percent in $(seq 1 $MissingPercentage); do
-    echo -n "="
-  done
-  echo "] 100%"
+  fi
+
   echo
 }
