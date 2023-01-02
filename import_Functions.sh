@@ -37,7 +37,8 @@ import_Functions () {
   mkdir -p "$TempDir/sha256sum"
 
   TerminalWidth=$(tput cols)
-  ProgressBarStepSize=$(($TerminalWidth-7))
+  TerminalWhiteSpace=7
+  ProgressBarStepSize=$(($TerminalWidth-$TerminalWhiteSpace))
   ProgressBarStepSize=$(($ProgressBarStepSize/$#))
   ProgressBarStepSize=$(($ProgressBarStepSize/6))
 
@@ -69,7 +70,7 @@ import_Functions () {
     fi
   done
   
-  MissingPercentage=$((TerminalWidth - 7 - $Percentage))
+  MissingPercentage=$((TerminalWidth - $TerminalWhiteSpace - $Percentage))
 
   for Percent in $(seq 1 $MissingPercentage); do
     echo -n "="
@@ -82,13 +83,13 @@ import_Functions () {
       echo "You can, however, continue importing any other functions (if asked by the script) and run the script."
       echo "This can, however, be a serious security concern since I can't verify the integrity of the function that is being imported."
       echo
-      read -p "Do you want to continue? [Y]es/[N]o: " yn
+      read -p "Do you want to continue? If so, type 'Yes' or 'yes'. " yn
         case $yn in
         [Yy]es)
           echo "Well, I hope you know what you are doing."
           ;;
         *)
-          echo -e "\x1B[1;33mWill not connect to Screen session after exit.\x1B[0m"
+          echo -e "Wise choice! The script will exit."
           echo
           exit 1
           ;;
