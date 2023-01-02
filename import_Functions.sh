@@ -36,7 +36,7 @@ import_Functions () {
   mkdir -p "$TempDir/sha256sum"
 
   TerminalWidth=$(tput cols)
-  ProgressBarStepSize=$(($TerminalWidth-0))
+  ProgressBarStepSize=$(($TerminalWidth-1))
   ProgressBarStepSize=$(($ProgressBarStepSize/$#))
   ProgressBarStepSize=$(($ProgressBarStepSize/6))
 
