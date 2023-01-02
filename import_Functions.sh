@@ -70,13 +70,10 @@ fi
   wait
 
 # Get checksums
-    expected_checksum=$(cat "$TempDir/sha256sum/$FunctionX.sh") &
+    expected_checksum=$(cat "$TempDir/sha256sum/$FunctionX.sh")
     UpdateProgressBar
-    actual_checksum=$(sha256sum "$TempDir/$FunctionX.sh" | awk '{print $1}') &
+    actual_checksum=$(sha256sum "$TempDir/$FunctionX.sh" | awk '{print $1}')
     UpdateProgressBar
-    
-# Wait for the checksums comparison to complete.
-  wait
     
 # Compare checksum
     if [ "$expected_checksum" == "$actual_checksum" ]; then
