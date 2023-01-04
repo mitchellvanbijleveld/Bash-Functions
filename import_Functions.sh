@@ -28,14 +28,64 @@ fi
   StringFunctions=$(echo $@ | sed 's/--quiet//g')
   StringFunctions=$(echo $StringFunctions | sed 's/ /, /g')
   echo "The following function(s) will be downloaded, checked on their sha256sum and imported to the script: $StringFunctions."
-  echo -n "["
+#  echo -n "["
 
   UpdateProgressBar () {
-    for step in $(seq 1 $ProgressBarStepSize); do
-      echo -n "="
+
+    for Percent in $(seq 1 $ProgressBarStepSize); do
+      StringPercentage="$StringPercentage="
       Percentage=$(($Percentage + 1))
     # sleep "0.25"
     done
+    MissingPercentage=$(($TerminalWidth - $TerminalSpareWhiteSpaces - $Percentage))
+#echo $Percentage
+#echo $TerminalWidth
+    StringPercentageCandy=$(awk "BEGIN {print $Percentage/$TerminalWidth}")
+#echo $StringPercentageCandy
+    StringPercentageCandy=$(awk "BEGIN {print $StringPercentageCandy * 100}")
+#echo $StringPercentageCandy
+    StringPercentageCandy=$(printf "%.0f\n" "$StringPercentageCandy")
+#echo $StringPercentageCandy
+    StringMissingPercentage=""
+    if [[ $1 == "--finish-progressbar" ]]; then
+      MissingPercentChar="="
+      StringPercentageCandy=100
+    else
+      MissingPercentChar="."
+      StringPercentageCandy=" $StringPercentageCandy"
+    fi
+    for MissingPercent in $(seq 1 $MissingPercentage); do
+       StringMissingPercentage="$MissingPercentChar$StringMissingPercentage"
+    done
+    ProgressBar="[$StringPercentage$StringMissingPercentage] $StringPercentageCandy %%"
+    printf "\r"
+    printf "$ProgressBar"
+
+   sleep 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+#    printf "\r"
+#    printf "This is a message"
+#    sleep 1
+#    printf "\r"
+#    printf "                       "
+#    sleep 1
+#    printf "\r"
+#    printf "This is another message"
+#    sleep 1
+#    printf "\r"
+#    printf "                       "
   }
 
 ###########################################################################
@@ -46,10 +96,11 @@ fi
   mkdir -p "$TempDir/sha256sum"
 
   TerminalWidth=$(tput cols)
-  TerminalWhiteSpace=7
-  ProgressBarStepSize=$(($TerminalWidth-$TerminalWhiteSpace))
+  TerminalSpareWhiteSpaces=9
+  ProgressBarStepSize=$(($TerminalWidth-$TerminalSpareWhiteSpaces))
   ProgressBarStepSize=$(($ProgressBarStepSize/$#))
   ProgressBarStepSize=$(($ProgressBarStepSize/6))
+  Percentage=0
 
 ###########################################################################
 # Step 2 - Download all functions, called by the script.                  #
@@ -78,18 +129,12 @@ fi
 # Compare checksum
     if [ "$expected_checksum" == "$actual_checksum" ]; then
       source "$TempDir/$FunctionX.sh"
-      UpdateProgressBar
+      UpdateProgressBar --finish-progressbar
     else
       ErrorDuringImport=true
     fi
   done
   
-  MissingPercentage=$((TerminalWidth - $TerminalWhiteSpace - $Percentage))
-
-  for Percent in $(seq 1 $MissingPercentage); do
-    echo -n "="
-  done
-  echo "] 100%"
   echo
   if [ $ErrorDuringImport ]; then
       unset echo
