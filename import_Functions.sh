@@ -135,6 +135,7 @@ fi
             echo $FailedImport
             source $FailedImport
           done
+          sleep 5
           ;;
         *)
           echo -e "Wise choice! The script will exit."
