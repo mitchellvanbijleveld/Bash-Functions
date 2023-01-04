@@ -105,7 +105,6 @@ fi
 # Compare checksum
     if [ "$expected_checksum" == "$actual_checksum" ]; then
       source "$TempDir/$FunctionX.sh"
-      ProcessedImports=$(($ProcessedImports + 1))
       if [[ $ProcessedImports == $# ]]; then
         UpdateProgressBar --finish-progressbar
       else
@@ -115,6 +114,9 @@ fi
       ErrorDuringImport=true
       FailedImports="$FailedImports$TempDir/$FunctionX.sh "
     fi
+    
+    ProcessedImports=$(($ProcessedImports + 1))
+    
   done
   
   echo
@@ -130,6 +132,7 @@ fi
         Yes)
           echo "Well, I hope you know what you are doing."
           for FailedImport in $FailedImports; do
+            echo $FailedImport
             source $FailedImport
           done
           ;;
