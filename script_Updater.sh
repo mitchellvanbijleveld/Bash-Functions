@@ -24,6 +24,7 @@ Check_Script_Update () {
 
   if [[ $ScriptVersion < $Online_ScriptVersion ]]; then
     ScriptName="$0"
+    echo $ScriptName
     echo -e "\x1B[1;33mScript not up to date ($ScriptVersion)! Downloading newest version ($Online_ScriptVersion)...\x1B[0m"
     curl --output "./$ScriptName" "$URL_SCRIPT" --progress-bar
     echo
