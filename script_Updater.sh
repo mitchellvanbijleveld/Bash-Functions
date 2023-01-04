@@ -7,7 +7,14 @@
 ###########################################################################
 # Instructions.
 ###########################################################################
-# ....................................................................... #
+# Please set the following variables in the script you want to use:       #
+# Internal_ScriptName : This will be the folder created in                #
+#                       '/tmp/mitchellvanbijleveld/ to store temporary    #
+#                        files                                            #
+# URL_VERSION         : Location (URL) of the file where the version      #
+#                       info is stored.                                   #
+#URL_SCRIPT           : URL where the newer version of the script can     #
+#                       be found                                          #
 ###########################################################################
 
 Check_Script_Update () {
