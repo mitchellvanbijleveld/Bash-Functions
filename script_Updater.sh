@@ -10,10 +10,8 @@
 # ....................................................................... #
 ###########################################################################
 
-###########################################################################
-# Function that checks for a script update, download it and run it.       #
-###########################################################################
 Check_Script_Update () {
+  echo "Mitchell van Bijleveld's Script Updater has been started..."
   echo "Checking for script updates..."
   mkdir -p "/tmp/mitchellvanbijleveld/$Internal_ScriptName/"
   curl --output "/tmp/mitchellvanbijleveld/$Internal_ScriptName/VersionInfo" "$URL_VERSION" --silent
@@ -25,7 +23,7 @@ Check_Script_Update () {
   if [[ $ScriptVersion < $Online_ScriptVersion ]]; then
     ScriptName="$0"
     echo $ScriptName
-    echo -e "\x1B[1;33mScript not up to date ($ScriptVersion)! Downloading newest version ($Online_ScriptVersion)...\x1B[0m"
+    echo -e "\x1B[1;33mScript not up to date ($ScriptVersion)! \x1B[1;33mDownloading newest version ($Online_ScriptVersion)...\x1B[0m"
     curl --output "./$ScriptName" "$URL_SCRIPT" --progress-bar
     echo
     echo "Restarting Script..."
@@ -39,10 +37,3 @@ Check_Script_Update () {
   echo
 }
 ###########################################################################
-
-
-
-
-
-
-
