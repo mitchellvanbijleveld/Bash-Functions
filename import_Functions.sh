@@ -38,14 +38,14 @@ fi
     # sleep "0.25"
     done
     MissingPercentage=$(($TerminalWidth - $TerminalSpareWhiteSpaces - $Percentage))
-#echo $Percentage
-#echo $TerminalWidth
+    #echo $Percentage
+    #echo $TerminalWidth
     StringPercentageCandy=$(awk "BEGIN {print $Percentage/$TerminalWidth}")
-#echo $StringPercentageCandy
+    #echo $StringPercentageCandy
     StringPercentageCandy=$(awk "BEGIN {print $StringPercentageCandy * 100}")
-#echo $StringPercentageCandy
+    #echo $StringPercentageCandy
     StringPercentageCandy=$(printf "%.0f\n" "$StringPercentageCandy")
-#echo $StringPercentageCandy
+    #echo $StringPercentageCandy
     StringMissingPercentage=""
     if [[ $1 == "--finish-progressbar" ]]; then
       MissingPercentChar="="
@@ -62,30 +62,6 @@ fi
     printf "$ProgressBar"
 
    sleep 1
-
-
-
-
-
-
-
-
-
-
-
-
-
-#    printf "\r"
-#    printf "This is a message"
-#    sleep 1
-#    printf "\r"
-#    printf "                       "
-#    sleep 1
-#    printf "\r"
-#    printf "This is another message"
-#    sleep 1
-#    printf "\r"
-#    printf "                       "
   }
 
 ###########################################################################
