@@ -16,7 +16,7 @@
 Check_Script_Update () {
   echo "Checking for script updates..."
   mkdir -p "/tmp/mitchellvanbijleveld/$Internal_ScriptName/"
-  curl --output "/tmp/mitchellvanbijleveld$Internal_ScriptName/VersionInfo" "$URL_VERSION" --silent
+  curl --output "/tmp/mitchellvanbijleveld/$Internal_ScriptName/VersionInfo" "$URL_VERSION" --silent
   . "/tmp/mitchellvanbijleveld/$Internal_ScriptName/VersionInfo"
   Online_ScriptVersion=$SCRIPT
   Online_JarVersion=$JAR
