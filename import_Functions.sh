@@ -1,9 +1,9 @@
 #!/bin/bash
 
 ###########################################################################
-# Custom 'import' function created by Mitchell van Bijleveld              #
-# Mitchell van Bijleveld - (https://mitchellvanbijleveld.dev/)            #
-# © 2023 Mitchell van Bijleveld. Last edited on 04 / 01 / 2023.           #
+# Function Import Script.                                                 #
+# © 2023 Mitchell van Bijleveld - https://mitchellvanbijleveld.dev/.      #
+# Last modified on 05 / 01 / 2023.                                        #
 ###########################################################################
 
 ###########################################################################
@@ -16,6 +16,7 @@
 
 import_Functions () {
 
+##### In case the '--quiet' flag is passed, replace the 'echo' function with printing nothing.
 if echo $@ | grep -q "\-\-quiet"
 then
   function echo () {
@@ -23,28 +24,23 @@ then
   }
 fi
 
+##### Log starting information.
   echo "Mitchell van Bijleveld's Function Importer has been started..."
   StringFunctions=$(echo $@ | sed 's/--quiet//g')
   StringFunctions=$(echo $StringFunctions | sed 's/ /, /g')
   echo "The following function(s) will be downloaded, checked on their sha256sum and imported to the script: $StringFunctions."
-#  echo -n "["
 
+##### Function that updates the dynamic progress bar.
   UpdateProgressBar () {
-
     for Percent in $(seq 1 $ProgressBarStepSize); do
       StringPercentage="$StringPercentage="
       Percentage=$(($Percentage + 1))
     # sleep "0.25"
     done
     MissingPercentage=$(($TerminalWidth - $TerminalSpareWhiteSpaces - $Percentage))
-    #echo $Percentage
-    #echo $TerminalWidth
     StringPercentageCandy=$(awk "BEGIN {print $Percentage/$TerminalWidth}")
-    #echo $StringPercentageCandy
     StringPercentageCandy=$(awk "BEGIN {print $StringPercentageCandy * 100}")
-    #echo $StringPercentageCandy
     StringPercentageCandy=$(printf "%.0f\n" "$StringPercentageCandy")
-    #echo $StringPercentageCandy
     StringMissingPercentage=""
     if [[ $1 == "--finish-progressbar" ]]; then
       MissingPercentChar="="
@@ -59,19 +55,16 @@ fi
     ProgressBar="[$StringPercentage$StringMissingPercentage] $StringPercentageCandy %%"
     printf "\r"
     printf "$ProgressBar"
-
-    # sleep 1
   }
 
 ###########################################################################
 # Step 1 - Create a temporary directory to store the checksum files.      #
 ###########################################################################
-  TempDir="/tmp/mitchellvanbijleveld/sha256sum_Checker"
+  TempDir="/tmp/mitchellvanbijleveld/.Functions"
   mkdir -p $TempDir
   mkdir -p "$TempDir/sha256sum"
 
   TerminalWidth=$(tput cols)
-  sleep 5
   TerminalSpareWhiteSpaces=9
   ProgressBarStepSize=$(($TerminalWidth-$TerminalSpareWhiteSpaces))
   ProgressBarStepSize=$(($ProgressBarStepSize/$#))
@@ -104,6 +97,7 @@ fi
     UpdateProgressBar
     
 # Compare checksum
+    ProcessedImports=$(($ProcessedImports + 1))
     if [ "$expected_checksum" == "$actual_checksum" ]; then
       source "$TempDir/$FunctionX.sh"
       if [[ $ProcessedImports == $# ]]; then
@@ -115,9 +109,6 @@ fi
       ErrorDuringImport=true
       FailedImports="$FailedImports$TempDir/$FunctionX.sh "
     fi
-    
-    ProcessedImports=$(($ProcessedImports + 1))
-    
   done
   
   echo
