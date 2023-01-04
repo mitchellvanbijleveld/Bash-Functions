@@ -71,6 +71,7 @@ fi
   mkdir -p "$TempDir/sha256sum"
 
   TerminalWidth=$(tput cols)
+  sleep 5
   TerminalSpareWhiteSpaces=9
   ProgressBarStepSize=$(($TerminalWidth-$TerminalSpareWhiteSpaces))
   ProgressBarStepSize=$(($ProgressBarStepSize/$#))
