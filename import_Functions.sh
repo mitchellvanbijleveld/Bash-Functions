@@ -101,6 +101,7 @@ fi
   ProgressBarStepSize=$(($ProgressBarStepSize/$#))
   ProgressBarStepSize=$(($ProgressBarStepSize/6))
   Percentage=0
+  ProcessedImports=0
 
 ###########################################################################
 # Step 2 - Download all functions, called by the script.                  #
@@ -129,7 +130,12 @@ fi
 # Compare checksum
     if [ "$expected_checksum" == "$actual_checksum" ]; then
       source "$TempDir/$FunctionX.sh"
-      UpdateProgressBar --finish-progressbar
+      ProcessedImports=$(($ProcessedImports + 1))
+      if [[ $ProcessedImports == $# ]]; then
+        UpdateProgressBar --finish-progressbar
+      else
+        UpdateProgressBar
+      fi
     else
       ErrorDuringImport=true
     fi
