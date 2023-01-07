@@ -33,6 +33,7 @@ print_Message () {
 }
 
 echo () {
+print_LogMessage WOODTESTER
   if [[ $@ != "" ]]; then
     set_String "$@"
     if $ArgumentVerboseLogging; then
