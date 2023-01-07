@@ -76,9 +76,9 @@ fi
 # Step 2 - Download all functions, called by the script.                  #
 ###########################################################################
   for FunctionX in $@; do
-  if [ $FunctionX == "--quiet" ]; then
-  continue
-  fi
+    if [ $FunctionX == "--quiet" ]; then
+    continue
+    fi
     UpdateProgressBar
     
 # Download Files
@@ -136,5 +136,8 @@ fi
           ;;
        esac
   fi
-  unset echo
+  if echo $@ | grep -q "\-\-quiet"
+  then
+    unset echo
+  fi
 }
