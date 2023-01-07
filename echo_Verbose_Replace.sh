@@ -23,5 +23,5 @@ echo () {
 }
 
 printf () {
-  echo
+  echo $@
 }
