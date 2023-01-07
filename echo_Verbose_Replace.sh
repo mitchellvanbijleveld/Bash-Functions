@@ -23,14 +23,14 @@ set_String () {
 
 echo () {
   if [[ $@ != "" ]]; then
-    set_String $@
+    set_String "$@"
     printf "LOG $(date +"%Y-%m-%d %H:%M:%S") [DEBUG] : $printingString"
     printf "\n"
   fi
 }
 
 echo_Verbose () {
-  set_String $@
+  set_String "$@"
   if $ArgumentVerboseLogging; then
     printf "LOG $(date +"%Y-%m-%d %H:%M:%S") [DEBUG] : $printingString"
     printf "\n"
