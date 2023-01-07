@@ -55,6 +55,9 @@ fi
     ProgressBar="[$StringPercentage$StringMissingPercentage] $StringPercentageCandy %%"
     printf "\r"
     printf "$ProgressBar"
+    if [[ $1 == "--finish-progressbar" ]]; then
+      printf "\n"
+    fi
   }
 
 ###########################################################################
