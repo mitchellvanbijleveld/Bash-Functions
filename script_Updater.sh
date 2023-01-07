@@ -42,6 +42,5 @@ Check_Script_Update () {
   else
     echo -e "\x1B[1;32mScript is up to date.\x1B[0m\n"
   fi
-  echo
 }
 ###########################################################################
