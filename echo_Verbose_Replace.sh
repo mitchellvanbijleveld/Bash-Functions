@@ -23,6 +23,8 @@ echo () {
     if $ArgumentVerboseLogging; then
       printf "LOG $(date +"%Y-%m-%d %H:%M:%S") [DEBUG] : $printingString"
       printf "\n"
+    else
+      printf 
     fi
   fi
 }
