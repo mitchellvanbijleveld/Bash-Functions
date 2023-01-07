@@ -15,8 +15,11 @@
 
 echo () {
   if [[ $@ != "" ]]; then
-    printingString=$@
-    printingString=$(echo "$printingString" | sed 's/-e//g')
+    if [[ $1 == "-e" ]]; then
+      printingString=$2
+    else
+      printingString=$1
+    fi
     if $ArgumentVerboseLogging; then
       printf "LOG $(date +"%Y-%m-%d %H:%M:%S") [DEBUG] : $printingString"
       printf "\n"
