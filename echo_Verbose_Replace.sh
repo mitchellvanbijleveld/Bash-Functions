@@ -21,25 +21,33 @@ set_String () {
   fi
 }
 
+print_LogMessage () {
+  printf "LOG $(date +"%Y-%m-%d %H:%M:%S") [DEBUG] : $printingString"
+  printf "\n"
+}
+
+
+print_Message () {
+  printf "$printingString"
+  printf "\n"
+}
+
 echo () {
   if [[ $@ != "" ]]; then
     set_String "$@"
     if $ArgumentVerboseLogging; then
-      printf "LOG $(date +"%Y-%m-%d %H:%M:%S") [DEBUG] : $printingString"
-      printf "\n"
+      print_LogMessage
     else
-      printf "$printingString"
-      printf "\n"
+      print_Message
     fi
   else
-    printf "\n"
+    printf ""
   fi
 }
 
 echo_Verbose () {
   set_String "$@"
   if $ArgumentVerboseLogging; then
-    printf "LOG $(date +"%Y-%m-%d %H:%M:%S") [DEBUG] : $printingString"
-    printf "\n"
+    print_LogMessage
   fi
 }
