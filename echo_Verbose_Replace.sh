@@ -21,3 +21,7 @@ echo () {
     fi
   fi
 }
+
+printf () {
+  echo
+}
