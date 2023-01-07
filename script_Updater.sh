@@ -33,7 +33,8 @@ Check_Script_Update () {
     echo -e "\x1B[1;33mScript not up to date ($ScriptVersion)! \x1B[1;33mDownloading newest version ($Online_ScriptVersion)...\x1B[0m"
     curl --output "./$ScriptName" "$URL_SCRIPT" --progress-bar
     echo
-    echo "Restarting Script..."
+    echo "Restarting Script in 5 seconds..."
+    sleep 5
     bash "./$ScriptName"
     exit
   elif [[ $ScriptVersion > $Online_ScriptVersion ]]; then
