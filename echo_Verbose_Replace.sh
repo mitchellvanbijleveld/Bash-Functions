@@ -15,6 +15,7 @@
 
 echo () {
   if $ArgumentVerboseLogging; then
-    echo "LOG $(date +"%Y-%m-%d %H:%M:%S") [DEBUG] : $1"
+    printf "LOG $(date +"%Y-%m-%d %H:%M:%S") [DEBUG] : $@"
+    printf "\n"
   fi
 }
