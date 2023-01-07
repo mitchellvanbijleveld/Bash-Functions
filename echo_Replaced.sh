@@ -35,7 +35,7 @@ print_Message () {
 echo () {
   if [[ $@ != "" ]]; then
     set_String "$@"
-    if $ArgumentVerboseLogging; then
+    if [[ $ArgumentVerboseLogging = true ]]; then
       printf "ARGU TRUEEE"
       print_LogMessage
     else
@@ -49,7 +49,7 @@ echo () {
 
 echo_Verbose () {
   set_String "$@"
-  if $ArgumentVerboseLogging; then
+    if [[ $ArgumentVerboseLogging = true ]]; then
     print_LogMessage
   fi
 }
