@@ -38,7 +38,7 @@ echo () {
     if $ArgumentVerboseLogging; then
       print_LogMessage
     else
-      print_Message
+      print_LogMessage
     fi
   else
     printf "\n"
