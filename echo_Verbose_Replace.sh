@@ -41,7 +41,7 @@ echo () {
       print_Message
     fi
   else
-    printf ""
+    printf "\n"
   fi
 }
 
