@@ -36,8 +36,10 @@ echo () {
   if [[ $@ != "" ]]; then
     set_String "$@"
     if $ArgumentVerboseLogging; then
+      printf "ARGU TRUEEE"
       print_LogMessage
     else
+      printf "ARGU FALSEEEEEEEEEE"
       print_Message
     fi
   else
