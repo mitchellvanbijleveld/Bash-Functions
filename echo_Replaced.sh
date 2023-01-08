@@ -13,28 +13,20 @@
 # 'ArgumentVerboseLogging' in your script (and set it to 'true'.          #
 ###########################################################################
 
-set_String () {
-  if [[ $1 == "-e" ]]; then
-    printingString=$2
-  else
-    printingString=$1
-  fi
-}
-
 print_LogMessage () {
-  printf "LOG $(date +"%Y-%m-%d %H:%M:%S") [DEBUG] : $printingString"
+  printf "LOG $(date +"%Y-%m-%d %H:%M:%S") [DEBUG] : $@"
   printf "\n"
 }
-
 
 print_Message () {
-  printf "$printingString"
-  printf "\n"
+  printf "$@"
+  if [[ $1 != "-n" ]]; then
+    printf "\n"
+  fi
 }
 
 echo () {
   if [[ $@ != "" ]]; then
-    set_String "$@"
     if [[ $ArgumentVerboseLogging == true ]]; then
       print_LogMessage
     else
@@ -46,8 +38,7 @@ echo () {
 }
 
 echo_Verbose () {
-  set_String "$@"
-    if [[ $ArgumentVerboseLogging == true ]]; then
+  if [[ $ArgumentVerboseLogging == true ]]; then
     print_LogMessage
   fi
 }
