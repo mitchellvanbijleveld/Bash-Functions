@@ -18,7 +18,6 @@
 ###########################################################################
 
 Check_Script_Update () {
-  CurrentDirectory=$(pwd)
   echo "Mitchell van Bijleveld's Script Updater has been started..."
   echo "Checking for script updates..."
   mkdir -p "/tmp/mitchellvanbijleveld/$Internal_ScriptName/"
@@ -32,11 +31,11 @@ Check_Script_Update () {
     ScriptName="$0"
     echo $ScriptName
     echo -e "\x1B[1;33mScript not up to date ($ScriptVersion)! \x1B[1;32mDownloading newest version ($Online_ScriptVersion)...\x1B[0m\n"
-    curl --output "./$ScriptName" "$URL_SCRIPT" --progress-bar
+    curl --output "$ScriptName" "$URL_SCRIPT" --progress-bar
     echo
-    echo "Restarting Script in 5 seconds..."
+    echo "Restarting Script from '$CurrentDirectory/$ScriptName $@'in 5 seconds..."
     sleep 5
-    bash "$CurrentDirectory/$ScriptName $@"
+    /usr/bin/bash "$ScriptName $@"
     exit
   elif [[ $ScriptVersion > $Online_ScriptVersion ]]; then
     echo -e "\x1B[1;33mYour version of the script ($ScriptVersion) is newer than the server version ($Online_ScriptVersion).\x1B[0m\n"
