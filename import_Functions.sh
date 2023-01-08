@@ -126,7 +126,9 @@ fi
         echo "$NumberOfFailedImport - $FailedImport"
         NumberOfFailedImport=$((NumberOfFailedImport + 1))
       done
-      read -p "Do you want to continue? If so, type 'Yes'. " yn
+      echo
+      echo -n "Do you want to import and use the script(s) mentioned above?"
+      read -p "If so, type 'Yes': " yn
         case $yn in
         Yes)
           echo "Well, I hope you know what you are doing."
@@ -137,7 +139,7 @@ fi
           sleep 5
           ;;
         *)
-          echo -e "Wise choice! The script will exit."
+          echo "Wise choice! The script will exit."
           echo
           exit 1
           ;;
