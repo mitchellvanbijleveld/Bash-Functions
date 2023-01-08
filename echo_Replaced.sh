@@ -40,7 +40,7 @@ print_Message () {
 
 echo () {
   if [[ $@ != "" ]]; then
-    check_echoFlags
+    check_echoFlags "$@"
     if [[ $ArgumentVerboseLogging == true ]]; then
       print_LogMessage "$PrintedMessage"
     else
@@ -52,7 +52,7 @@ echo () {
 }
 
 echo_Verbose () {
-  check_echoFlags
+  check_echoFlags "$@"
   if [[ $ArgumentVerboseLogging == true ]]; then
     print_LogMessage "$PrintedMessage"
   fi
