@@ -57,6 +57,7 @@ echo () {
 }
 
 echo_Verbose () {
+if [[ $LogExtraMessages == true ]]; then
   if [[ $@ != "" ]]; then
     check_echoFlags "$@"
     if [[ $LogStyle == "Verbose"  ]]; then
@@ -67,4 +68,5 @@ echo_Verbose () {
   else
     printf "\n"
   fi
+fi
 }
