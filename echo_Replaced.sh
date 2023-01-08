@@ -21,6 +21,9 @@ check_echoFlags () {
     NewLine=false
     PrintedMessage="$2"
     ;;
+  "-e")
+    PrintedMessage="$2"
+    ;;
   esac
 }
 
