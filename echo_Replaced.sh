@@ -44,11 +44,11 @@ print_Message () {
 echo () {
   if [[ $@ != "" ]]; then
     check_echoFlags "$@"
-    if [[ $ArgumentVerboseLogging == true ]]; then
+    if [[ $ArgumentVerboseLogging == true ]] || [[ LogStyle == "Verbose"  ]]; then
       print_LogMessage "$PrintedMessage"
     else
       print_Message "$PrintedMessage"
-    fi
+  fi
   else
     printf "\n"
   fi
