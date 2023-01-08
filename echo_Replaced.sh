@@ -13,20 +13,30 @@
 # 'ArgumentVerboseLogging' in your script (and set it to 'true'.          #
 ###########################################################################
 
+check_echoFlags () {
+  NewLine=true
+  if [[ $1 == "-n" ]]; then
+    NewLine=false
+  fi
+}
+
 print_LogMessage () {
   printf "LOG $(date +"%Y-%m-%d %H:%M:%S") [DEBUG] : $@"
-  printf "\n"
+  if [[ $NewLine == true ]]; then
+    printf "\n"
+  fi
 }
 
 print_Message () {
   printf "$@"
-  if [[ $1 != "-n" ]]; then
+  if [[ $NewLine == true ]]; then
     printf "\n"
   fi
 }
 
 echo () {
   if [[ $@ != "" ]]; then
+    check_echoFlags
     if [[ $ArgumentVerboseLogging == true ]]; then
       print_LogMessage "$@"
     else
@@ -38,6 +48,7 @@ echo () {
 }
 
 echo_Verbose () {
+  check_echoFlags
   if [[ $ArgumentVerboseLogging == true ]]; then
     print_LogMessage "$@"
   fi
