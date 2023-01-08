@@ -57,8 +57,14 @@ echo () {
 }
 
 echo_Verbose () {
-  check_echoFlags "$@"
-  if [[ $ArgumentVerboseLogging == true ]]; then
-    print_LogMessage "$PrintedMessage"
+  if [[ $@ != "" ]]; then
+    check_echoFlags "$@"
+    if [[ $LogStyle == "Verbose"  ]]; then
+      print_LogMessage "$PrintedMessage"
+    else
+      print_Message "$PrintedMessage"
+  fi
+  else
+    printf "\n"
   fi
 }
