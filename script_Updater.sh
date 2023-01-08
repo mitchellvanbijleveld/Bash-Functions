@@ -18,7 +18,7 @@
 ###########################################################################
 
 Check_Script_Update () {
-  echo $(pwd)
+  CurrentDirectory=$(pwd)
   echo "Mitchell van Bijleveld's Script Updater has been started..."
   echo "Checking for script updates..."
   mkdir -p "/tmp/mitchellvanbijleveld/$Internal_ScriptName/"
@@ -36,7 +36,7 @@ Check_Script_Update () {
     echo
     echo "Restarting Script in 5 seconds..."
     sleep 5
-    bash "$ScriptName $@"
+    bash "$CurrentDirectory/$ScriptName $@"
     exit
   elif [[ $ScriptVersion > $Online_ScriptVersion ]]; then
     echo -e "\x1B[1;33mYour version of the script ($ScriptVersion) is newer than the server version ($Online_ScriptVersion).\x1B[0m\n"
