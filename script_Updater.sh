@@ -29,11 +29,14 @@ Check_Script_Update () {
 
   if [[ $ScriptVersion < $Online_ScriptVersion ]]; then
     ScriptPath=$(realpath $0)
-    echo $ScriptPath
     echo -e "\x1B[1;33mScript not up to date ($ScriptVersion)! \x1B[1;32mDownloading newest version ($Online_ScriptVersion)...\x1B[0m\n"
     curl --output "$ScriptPath" "$URL_SCRIPT" --progress-bar
     echo
-    echo "Restarting Script from '$ScriptPath' with arguments '$@' in 5 seconds..."
+    if [[ $@ == "" ]]; then
+      echo "Restarting Script from '$ScriptPath' in 5 seconds..."
+    else
+      echo "Restarting Script from '$ScriptPath' with arguments '$@' in 5 seconds..."
+    fi
     sleep 5
     /usr/bin/bash $ScriptPath $@
     exit
@@ -43,4 +46,3 @@ Check_Script_Update () {
     echo -e "\x1B[1;32mScript is up to date.\x1B[0m\n"
   fi
 }
-###########################################################################
