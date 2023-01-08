@@ -36,9 +36,9 @@ Check_Script_Update () {
     echo "Restarting Script from '$ScriptPath' with arguments '$@' in 5 seconds..."
     sleep 5
     if [[ $@ == "" ]]; then
-      source $ScriptPath
+      /usr/bin/bash $ScriptPath
     else
-      source $ScriptPath $@
+      /usr/bin/bash $ScriptPath $@
     fi
     exit
   elif [[ $ScriptVersion > $Online_ScriptVersion ]]; then
