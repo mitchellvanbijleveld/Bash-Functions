@@ -10,7 +10,9 @@
 # It's as simple as putting 'echo_Verbose [TEXT]' instead of echo.        # 
 # In case you want to use this function only when a --verbose flag is     #
 # passed, build a function that sets an argument called                   #
-# 'ArgumentVerboseLogging' in your script (and set it to 'true'.          #
+# 'ArgumentVerboseLogging' in your script (and set it to 'true'. If you   #
+# set the LogStyle to 'Verbose' in your script, the verbose logging       #
+# will be used.                                                           #
 ###########################################################################
 
 check_echoFlags () {
