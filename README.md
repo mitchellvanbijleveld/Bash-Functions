@@ -1,7 +1,7 @@
 # Bash Functions
 This README will guild you through the steps of using this repository. Below is a code example with how to use the script. It basically is as simple as 'sourcing' the import script and then launch it to import the functions you want.
 ```
-source <(curl https://github.mitchellvanbijleveld.dev/Bash-Functions/import_Functions.sh --silent)
+eval "$(curl https://github.mitchellvanbijleveld.dev/Bash-Functions/import_Functions.sh --silent)"
 import_Functions [Function_1] [Function_2]
 ```
 
