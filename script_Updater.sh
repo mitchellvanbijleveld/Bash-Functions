@@ -18,6 +18,7 @@
 ###########################################################################
 
 Check_Script_Update () {
+  echo $(pwd)
   echo "Mitchell van Bijleveld's Script Updater has been started..."
   echo "Checking for script updates..."
   mkdir -p "/tmp/mitchellvanbijleveld/$Internal_ScriptName/"
