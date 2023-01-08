@@ -28,9 +28,9 @@ print_Message () {
 echo () {
   if [[ $@ != "" ]]; then
     if [[ $ArgumentVerboseLogging == true ]]; then
-      print_LogMessage
+      print_LogMessage "$@"
     else
-      print_Message
+      print_Message "$@"
     fi
   else
     printf "\n"
@@ -39,6 +39,6 @@ echo () {
 
 echo_Verbose () {
   if [[ $ArgumentVerboseLogging == true ]]; then
-    print_LogMessage
+    print_LogMessage "$@"
   fi
 }
