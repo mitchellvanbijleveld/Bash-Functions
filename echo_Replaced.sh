@@ -15,20 +15,24 @@
 
 check_echoFlags () {
   NewLine=true
-  if [[ $1 == "-n" ]]; then
+  PrintedMessage="$@"
+  case "$1" in
+  "-n")
     NewLine=false
-  fi
+    PrintedMessage="$2"
+    ;;
+  esac
 }
 
 print_LogMessage () {
-  printf "LOG $(date +"%Y-%m-%d %H:%M:%S") [DEBUG] : $@"
+  printf "LOG $(date +"%Y-%m-%d %H:%M:%S") [DEBUG] : $PrintedMessage"
   if [[ $NewLine == true ]]; then
     printf "\n"
   fi
 }
 
 print_Message () {
-  printf "$@"
+  printf "$PrintedMessage"
   if [[ $NewLine == true ]]; then
     printf "\n"
   fi
@@ -38,9 +42,9 @@ echo () {
   if [[ $@ != "" ]]; then
     check_echoFlags
     if [[ $ArgumentVerboseLogging == true ]]; then
-      print_LogMessage "$@"
+      print_LogMessage "$PrintedMessage"
     else
-      print_Message "$@"
+      print_Message "$PrintedMessage"
     fi
   else
     printf "\n"
@@ -50,6 +54,6 @@ echo () {
 echo_Verbose () {
   check_echoFlags
   if [[ $ArgumentVerboseLogging == true ]]; then
-    print_LogMessage "$@"
+    print_LogMessage "$PrintedMessage"
   fi
 }
