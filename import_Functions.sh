@@ -127,13 +127,13 @@ fi
         NumberOfFailedImport=$((NumberOfFailedImport + 1))
       done
       echo
-      echo -n "Do you want to import and use the script(s) mentioned above?"
+      echo -n "Do you want to import and use the script(s) mentioned above? "
       read -p "If so, type 'Yes': " yn
         case $yn in
         Yes)
           echo "Well, I hope you know what you are doing."
           for FailedImport in $FailedImports; do
-            echo $FailedImport
+            echo "Importing file '$FailedImport'..."
             source $FailedImport
           done
           sleep 5
