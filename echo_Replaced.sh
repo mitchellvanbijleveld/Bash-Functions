@@ -29,6 +29,10 @@ check_echoFlags () {
   esac
 }
 
+write_LogFile () {
+  echo "testing purposes only for now"
+}
+
 print_LogMessage () {
   printf "LOG $(date +"%Y-%m-%d %H:%M:%S") [DEBUG] : $PrintedMessage"
   if [[ $NewLine == true ]]; then
