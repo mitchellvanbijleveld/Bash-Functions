@@ -28,14 +28,14 @@ Check_Script_Update () {
   Online_JarURL=$URL
 
   if [[ $ScriptVersion < $Online_ScriptVersion ]]; then
-    ScriptName="$0"
-    echo $ScriptName
+    ScriptPath=$(realpath $0)
+    echo $ScriptPath
     echo -e "\x1B[1;33mScript not up to date ($ScriptVersion)! \x1B[1;32mDownloading newest version ($Online_ScriptVersion)...\x1B[0m\n"
-    curl --output "$ScriptName" "$URL_SCRIPT" --progress-bar
+    curl --output "$ScriptPath" "$URL_SCRIPT" --progress-bar
     echo
-    echo "Restarting Script from '$CurrentDirectory/$ScriptName $@'in 5 seconds..."
+    echo "Restarting Script from '$ScriptPath' with arguments '$@' in 5 seconds..."
     sleep 5
-    /usr/bin/bash "$ScriptName $@"
+    /usr/bin/bash "$ScriptPath $@"
     exit
   elif [[ $ScriptVersion > $Online_ScriptVersion ]]; then
     echo -e "\x1B[1;33mYour version of the script ($ScriptVersion) is newer than the server version ($Online_ScriptVersion).\x1B[0m\n"
