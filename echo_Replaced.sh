@@ -46,7 +46,7 @@ print_Message () {
 echo () {
   if [[ $@ != "" ]]; then
     check_echoFlags "$@"
-    if [[ $ArgumentVerboseLogging == true ]] || [[ $LogStyle == "Verbose"  ]]; then
+    if [[ $LogStyle == "Verbose"  ]]; then
       print_LogMessage "$PrintedMessage"
     else
       print_Message "$PrintedMessage"
