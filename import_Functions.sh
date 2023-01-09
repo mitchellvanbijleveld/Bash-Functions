@@ -99,6 +99,7 @@ fi
       vTempFunction=$(cat "$TempDir/$FunctionX.sh" | grep "##### Version")
       vTempFunction=$(echo $vTempFunction | sed 's/#//g')
       vTempFunction=$(echo $vTempFunction | sed 's/Version//g')
+      vTempFunction=$(echo $vTempFunction | sed 's/ //g')
       if [[ $vFunction != $vTempFunction ]]; then
         echo "version mismatch"
         curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent &
