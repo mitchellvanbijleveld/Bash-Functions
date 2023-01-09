@@ -84,18 +84,34 @@ fi
 ###########################################################################
   for FunctionX in $@; do
     if [ $FunctionX == "--quiet" ]; then
-    continue
-    fi
+      continue
+      fi
     
+    ##### Get version of function from server version file
     eval vFunction=\$$FunctionX
     echo $vFunction
     echo $FunctionX
     
-    sleep 30
+    sleep 15
     
     UpdateProgressBar
     
 # Download Files
+
+    if [[ -e "$TempDir/$FunctionX.sh" ]]; then
+      vTempFunction=$(cat "$TempDir/$FunctionX.sh" | grep "##### Version")
+      echo $vTempFunction
+      vTempFunction=$(echo $vTempFunction | sed 's/#//g')
+      echo $vTempFunction
+      vTempFunction=$(echo $vTempFunction | sed 's/Version//g')
+      echo $vTempFunction
+      vTempFunction=$(echo $vTempFunction | sed 's/ //g')
+      echo $vTempFunction
+      
+      sleep 15
+    fi
+
+
     curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent &
     UpdateProgressBar
     curl --output "$TempDir/.sha256sum/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/sha256sum/$FunctionX.sh" --silent &
