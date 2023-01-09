@@ -16,9 +16,11 @@
 
 import_Functions () {
 
-##### In case the '--quiet' flag is passed, replace the 'echo' function with printing nothing.
-if echo $@ | grep -q "\-\-quiet"
+SilentMode=false
+##### In case the '--silent' flag is passed, replace the 'echo' function with printing nothing.
+if echo $@ | grep -q "\-\-silent"
 then
+  SilentMode=true
   function echo () {
     printf ""
   }
@@ -26,7 +28,7 @@ fi
 
 ##### Log starting information.
   echo "Mitchell van Bijleveld's Function Importer has been started..."
-  StringFunctions=$(echo $@ | sed 's/--quiet//g')
+  StringFunctions=$(echo $@ | sed 's/--silent//g')
   StringFunctions=$(echo $StringFunctions | sed 's/ /, /g')
   echo "The following function(s) will be downloaded, checked on their sha256sum and imported to the script: $StringFunctions."
 
@@ -53,10 +55,14 @@ fi
        StringMissingPercentage="$MissingPercentChar$StringMissingPercentage"
     done
     ProgressBar="[$StringPercentage$StringMissingPercentage] $StringPercentageCandy %%"
-    printf "\r"
-    printf "$ProgressBar"
-    if [[ $1 == "--finish-progressbar" ]]; then
-      printf "\n"
+    if $SilentMode; then
+      printf ""
+    else
+      printf "\r"
+      printf "$ProgressBar"
+      if [[ $1 == "--finish-progressbar" ]]; then
+        printf "\n"
+      fi
     fi
   }
 
@@ -83,7 +89,7 @@ fi
 # Step 2 - Download all functions, called by the script.                  #
 ###########################################################################
   for FunctionX in $@; do
-    if [ $FunctionX == "--quiet" ]; then
+    if [ $FunctionX == "--silent" ]; then
       continue
       fi
     
@@ -135,8 +141,13 @@ fi
   done
   
   echo
+  
+  if $SilentMode; then
+  then
+    unset echo
+  fi
+  
   if [ $ErrorDuringImport ]; then
-      unset echo
       echo "There was an error importing one or more functions, most likely due to a sha256sum mismatch."
       echo "You can, however, continue importing any other functions (if asked by the script) and run the script."
       echo "This can, however, be a serious security concern since I can't verify the integrity of the function that is being imported."
@@ -164,9 +175,5 @@ fi
           exit 1
           ;;
        esac
-  fi
-  if echo $@ | grep -q "\-\-quiet"
-  then
-    unset echo
   fi
 }
