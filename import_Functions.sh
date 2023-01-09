@@ -99,12 +99,13 @@ fi
       vTempFunction=$(echo $vTempFunction | sed 's/#//g')
       vTempFunction=$(echo $vTempFunction | sed 's/Version//g')
       if [[ $vFunction != $vTempFunction ]]; then
-        curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent &
+        curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" &
       fi
     else
-      curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent &   
+      curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" &   
     fi
     UpdateProgressBar
+    
     curl --output "$TempDir/.sha256sum/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/sha256sum/$FunctionX.sh" --silent &
     UpdateProgressBar
 
