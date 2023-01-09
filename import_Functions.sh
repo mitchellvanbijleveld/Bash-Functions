@@ -95,7 +95,6 @@ fi
 # Download Files
     ##### If the file exists, compare the versions. If the file doesn't exist, download it. If the versions don't match, download new file.
     if [[ -e "$TempDir/$FunctionX.sh" ]]; then
-      echo "verifying version from existing file"
       vTempFunction=$(cat "$TempDir/$FunctionX.sh" | grep "##### Version")
       vTempFunction=$(echo $vTempFunction | sed 's/#//g')
       vTempFunction=$(echo $vTempFunction | sed 's/Version//g')
