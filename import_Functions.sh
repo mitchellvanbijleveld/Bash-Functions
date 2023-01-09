@@ -97,7 +97,6 @@ fi
     UpdateProgressBar
     
 # Download Files
-
     if [[ -e "$TempDir/$FunctionX.sh" ]]; then
       vTempFunction=$(cat "$TempDir/$FunctionX.sh" | grep "##### Version")
       echo $vTempFunction
@@ -107,12 +106,14 @@ fi
       echo $vTempFunction
       vTempFunction=$(echo $vTempFunction | sed 's/ //g')
       echo $vTempFunction
-      
+      if [[ $vFunction != $vTempFunction ]]; then
+        curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent &
+      fi
       sleep 15
+    else
+      curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent &   
     fi
 
-
-    curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent &
     UpdateProgressBar
     curl --output "$TempDir/.sha256sum/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/sha256sum/$FunctionX.sh" --silent &
     UpdateProgressBar
