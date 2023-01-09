@@ -121,6 +121,17 @@ fi
       fi
     else
       curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent &
+      wait
+      vTempFunction=$(cat "$TempDir/$FunctionX.sh" | grep "##### Version")
+      vTempFunction=$(echo $vTempFunction | sed 's/#//g')
+      vTempFunction=$(echo $vTempFunction | sed 's/Version//g')
+      vTempFunction=$(echo $vTempFunction | sed 's/ //g')
+      if [[ $vFunction != $vTempFunction ]]; then
+        UpdateProgressBar --finish-progressbar
+        unset echo
+        echo "Fatal error: version mismatch during import one of the functions."
+        exit
+      fi
     fi
     UpdateProgressBar
     
