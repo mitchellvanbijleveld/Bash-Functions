@@ -105,8 +105,6 @@ fi
       echo $vTempFunction
       vTempFunction=$(echo $vTempFunction | sed 's/Version//g')
       echo $vTempFunction
-      vTempFunction=$(echo $vTempFunction | sed 's/ //g')
-      echo $vTempFunction
       if [[ $vFunction != $vTempFunction ]]; then
         curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent &
       fi
