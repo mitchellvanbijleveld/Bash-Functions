@@ -87,7 +87,7 @@ fi
     fi
     
     source "$TempDir/.version"
-    eval val=\$$var1
+    eval val=\$$FunctionX
     echo $val
     
     sleep 30
