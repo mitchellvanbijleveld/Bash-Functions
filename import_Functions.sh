@@ -89,10 +89,6 @@ fi
     
     ##### Get version of function from server version file
     eval vFunction=\$$FunctionX
-    echo $vFunction
-    echo $FunctionX
-    
-    sleep 5
     
     UpdateProgressBar
     
