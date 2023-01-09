@@ -100,18 +100,14 @@ fi
     ##### If the file exists, compare the versions. If the file doesn't exist, download it. If the versions don't match, download new file.
     if [[ -e "$TempDir/$FunctionX.sh" ]]; then
       vTempFunction=$(cat "$TempDir/$FunctionX.sh" | grep "##### Version")
-      echo $vTempFunction
       vTempFunction=$(echo $vTempFunction | sed 's/#//g')
-      echo $vTempFunction
       vTempFunction=$(echo $vTempFunction | sed 's/Version//g')
-      echo $vTempFunction
       if [[ $vFunction != $vTempFunction ]]; then
         curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent &
       fi
     else
       curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent &   
     fi
-
     UpdateProgressBar
     curl --output "$TempDir/.sha256sum/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/sha256sum/$FunctionX.sh" --silent &
     UpdateProgressBar
