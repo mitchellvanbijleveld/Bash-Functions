@@ -92,7 +92,7 @@ fi
     echo $vFunction
     echo $FunctionX
     
-    sleep 15
+    sleep 5
     
     UpdateProgressBar
     
