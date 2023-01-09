@@ -101,11 +101,9 @@ fi
       vTempFunction=$(echo $vTempFunction | sed 's/Version//g')
       vTempFunction=$(echo $vTempFunction | sed 's/ //g')
       if [[ $vFunction != $vTempFunction ]]; then
-        echo "version mismatch"
         curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent &
       fi
     else
-      echo "stil downloading file"
       curl --output "$TempDir/$FunctionX.sh" "https://github.mitchellvanbijleveld.dev/Bash-Functions/$FunctionX.sh" --silent &   
     fi
     UpdateProgressBar
