@@ -24,6 +24,9 @@ then
   }
 fi
 
+##### Download new version info file.
+curl --output "$TempDir/.version" "https://github.mitchellvanbijleveld.dev/Bash-Functions/VERSION" --silent
+
 ##### Log starting information.
   echo "Mitchell van Bijleveld's Function Importer has been started..."
   StringFunctions=$(echo $@ | sed 's/--quiet//g')
@@ -82,6 +85,12 @@ fi
     if [ $FunctionX == "--quiet" ]; then
     continue
     fi
+    
+    source "$TempDir/.version"
+    echo $FunctionX
+    
+    sleep 30
+    
     UpdateProgressBar
     
 # Download Files
@@ -91,7 +100,7 @@ fi
     UpdateProgressBar
 
 # Wait for the downloads to complete.
-  wait
+    wait
 
 # Get checksums
     expected_checksum=$(cat "$TempDir/.sha256sum/$FunctionX.sh")
