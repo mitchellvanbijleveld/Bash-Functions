@@ -24,9 +24,6 @@ then
   }
 fi
 
-##### Download new version info file.
-curl --output "$TempDir/.version" "https://github.mitchellvanbijleveld.dev/Bash-Functions/VERSION" --silent
-
 ##### Log starting information.
   echo "Mitchell van Bijleveld's Function Importer has been started..."
   StringFunctions=$(echo $@ | sed 's/--quiet//g')
@@ -69,6 +66,9 @@ curl --output "$TempDir/.version" "https://github.mitchellvanbijleveld.dev/Bash-
   TempDir="/tmp/mitchellvanbijleveld/.Functions"
   mkdir -p $TempDir
   mkdir -p "$TempDir/.sha256sum"
+  
+  ##### Download new version info file.
+  curl --output "$TempDir/.version" "https://github.mitchellvanbijleveld.dev/Bash-Functions/VERSION" --silent
 
   TerminalWidth=$(tput cols)
   TerminalSpareWhiteSpaces=9
