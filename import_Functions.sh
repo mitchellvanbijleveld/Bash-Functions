@@ -143,7 +143,6 @@ fi
   echo
   
   if $SilentMode; then
-  then
     unset echo
   fi
   
