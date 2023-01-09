@@ -69,6 +69,7 @@ fi
   
   ##### Download new version info file.
   curl --output "$TempDir/.version" "https://github.mitchellvanbijleveld.dev/Bash-Functions/VERSION" --silent
+  source "$TempDir/.version"
 
   TerminalWidth=$(tput cols)
   TerminalSpareWhiteSpaces=9
@@ -86,9 +87,8 @@ fi
     continue
     fi
     
-    source "$TempDir/.version"
-    eval val=\$$FunctionX
-    echo $val
+    eval vFunction=\$$FunctionX
+    echo $vFunction
     echo $FunctionX
     
     sleep 30
