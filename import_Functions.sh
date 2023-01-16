@@ -144,7 +144,7 @@ fi
 # Get checksums
     expected_checksum=$(cat "$TempDir/.sha256sum/$FunctionX.sh")
     UpdateProgressBar
-    actual_checksum=$(sha256sum "$TempDir/$FunctionX.sh" | awk '{print $1}')
+    actual_checksum=$(shasum -a 256 "$TempDir/$FunctionX.sh" | awk '{print $1}')
     UpdateProgressBar
     
 # Compare checksum
